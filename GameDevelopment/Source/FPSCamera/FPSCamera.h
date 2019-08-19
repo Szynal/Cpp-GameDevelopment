@@ -13,6 +13,7 @@ namespace gameDevelopnemt
 		FPSCamera(const bs::HSceneObject& parent);
 
 		void update() override;
+		void fixedUpdate() override;
 		void SetSceneObject(const bs::HSceneObject& sceneObject) { player = sceneObject; }
 
 	private:
@@ -20,12 +21,19 @@ namespace gameDevelopnemt
 		void applyAngles();
 
 		bs::HSceneObject player;
+		bs::HCharacterController controller;
 
 		bs::Degree rotationVerticalAxis = bs::Degree(0.0f);
 		bs::Degree rotationHorizontalAxis = bs::Degree(0.0f);
 
+
+		float mCurrentSpeed = 0.0f; 
 		bs::VirtualAxis inputVerticalAxis;
 		bs::VirtualAxis inputHorizontalAxis;
+		bs::VirtualButton moveForward; 
+		bs::VirtualButton moveBack; 
+		bs::VirtualButton moveLeft; 
+		bs::VirtualButton moveRight;
 	};
 
 	using HFPSCamera = bs::GameObjectHandle<FPSCamera>;
